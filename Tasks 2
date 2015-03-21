@@ -57,18 +57,20 @@ countSubstring small big
 countSmall :: String -> Integer
 countSmall small
 	| small == ""					= 0
-	| head small >= 'a' && head small <= 'z' = 1 + countSmall (tail small)
+	| hS >= 'a' && hS <= 'z' 		= 1 + countSmall (tail small)
 	| otherwise 					= countSmall (tail small)
+	where hS = head small
 	
 countBig :: String -> Integer
 countBig big
 	| big == ""						= 0
-	| head big >= 'A' && head big <= 'Z' = 1 + countBig (tail big)
+	| hB >= 'A' && hB <= 'Z' 		= 1 + countBig (tail big)
 	| otherwise						= countBig (tail big)
+	where hB = head big
 	
 countSandB :: String -> (Integer, Integer)
 countSandB smallAndBig
 	| smallAndBig == ""				= (0,0)
-	| (head smallAndBig >= 'a' && head smallAndBig <= 'z')
-			|| (head smallAndBig >= 'A' && head smallAndBig <= 'Z')
+	| (hSB >= 'a' && hSB <= 'z') || (hSB >= 'A' && hSB <= 'Z')
 									= (countSmall smallAndBig, countBig smallAndBig)
+	where hSB = head smallAndBig
