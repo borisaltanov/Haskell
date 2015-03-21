@@ -73,4 +73,4 @@ countSandB smallAndBig
 	| smallAndBig == ""				= (0,0)
 	| (hSB >= 'a' && hSB <= 'z') || (hSB >= 'A' && hSB <= 'Z')
 									= (countSmall smallAndBig, countBig smallAndBig)
-	where hSB = head small
+	where hSB = head smallAndBig
