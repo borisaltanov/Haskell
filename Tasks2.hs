@@ -56,14 +56,14 @@ countSubstring small big
 --Task 7
 countSmall :: String -> Integer
 countSmall small
-	| small == ""					= 0
+	| small == ""			    	= 0
 	| hS >= 'a' && hS <= 'z' 		= 1 + countSmall (tail small)
-	| otherwise 					= countSmall (tail small)
+	| otherwise 			    	= countSmall (tail small)
 	where hS = head small
 	
 countBig :: String -> Integer
 countBig big
-	| big == ""						= 0
+	| big == ""			        	= 0
 	| hB >= 'A' && hB <= 'Z' 		= 1 + countBig (tail big)
 	| otherwise						= countBig (tail big)
 	where hB = head big
