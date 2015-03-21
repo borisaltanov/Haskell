@@ -1,0 +1,74 @@
+--Task 1
+countRoots :: Int -> Int -> Int -> Int
+countRoots a b c
+	| a == 0 && b == 0 && c == 0	= 0
+	| d > 0							= 2
+	| d == 0 						= 1
+	| d < 0 						= 0
+	where d = b*b - 4*a*c
+	
+--Task 2
+nFact :: Int -> Int
+nFact n
+	| n < 0							= error "n must be positive"
+	| n == 0 || n == 1				= 1
+	| otherwise						= n * nFact(n-1)
+	
+--Task 3
+fib :: Int -> Int
+fib n
+	| n == 1						= 0
+	| n == 2						= 1
+	| n == 3						= 1
+	| otherwise						= fib(n-1) + fib(n-2)
+	
+--Task 4
+isPrime :: Integer -> Bool
+isPrime 1							= False
+isPrime 2							= True
+isPrime n							= isPrimeHelper 2
+	where isPrimeHelper i
+		| (n `mod` i) == 0 			= False
+		| (fromIntegral i) > d		= True
+		| otherwise					= isPrimeHelper(i+1)
+			where d = (sqrt (fromIntegral n)) 
+
+--Task 5
+repeatChar :: Integer -> Char -> String
+repeatChar n ch
+	| n == 0						= ""
+	| otherwise						= ch:(repeatChar (n-1) ch)
+	
+--Task 6
+isPrefix :: String -> String -> Bool
+isPrefix small big
+	| small == ""					= True
+	| length small > length big		= False
+	| head small /= head big		= False
+	| otherwise						= isPrefix (tail small) (tail big)
+	
+countSubstring :: String -> String -> Integer
+countSubstring small big
+	| length small > length big		= 0
+	| isPrefix small big			= 1 + countSubstring small (tail big)
+	| otherwise						= countSubstring small (tail big)
+	
+--Task 7
+countSmall :: String -> Integer
+countSmall small
+	| small == ""					= 0
+	| head small >= 'a' && head small <= 'z' = 1 + countSmall (tail small)
+	| otherwise 					= countSmall (tail small)
+	
+countBig :: String -> Integer
+countBig big
+	| big == ""						= 0
+	| head big >= 'A' && head big <= 'Z' = 1 + countBig (tail big)
+	| otherwise						= countBig (tail big)
+	
+countSandB :: String -> (Integer, Integer)
+countSandB smallAndBig
+	| smallAndBig == ""				= (0,0)
+	| (head smallAndBig >= 'a' && head smallAndBig <= 'z')
+			|| (head smallAndBig >= 'A' && head smallAndBig <= 'Z')
+									= (countSmall smallAndBig, countBig smallAndBig)
